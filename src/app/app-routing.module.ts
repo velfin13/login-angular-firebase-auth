@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'forgot-password', component: ResetPasswordComponent },
   { path: 'verify-email', component: VerifyEmailComponent },
+  { path: "**", redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({
