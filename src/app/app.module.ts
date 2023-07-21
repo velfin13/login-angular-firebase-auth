@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AngularFireModule } from '@angular/fire/compat';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { environment } from 'src/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { SingUpComponent } from './components/sing-up/sing-up.component';
-import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
-import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
-import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { DashboardComponent, LoginComponent, ResetPasswordComponent, SingUpComponent, VerifyEmailComponent } from './components';
+import { SpinnerComponent } from './shared';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,11 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

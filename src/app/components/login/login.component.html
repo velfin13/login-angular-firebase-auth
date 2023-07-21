@@ -2,7 +2,7 @@
     <div  class="body">
         <img class="logo" src="../../../assets/img/login.png" alt="Login">
         <h1>Login</h1>
-        <form >
+        <form (ngSubmit)="login(); $event.preventDefault()" [formGroup]="loginForm">
             <div class="form-floating mb-3">
                 <input type="email" formControlName="email" class="form-control" placeholder="name@example.com">
                 <label>Email</label>
