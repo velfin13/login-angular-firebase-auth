@@ -28,12 +28,12 @@ export class SingUpComponent implements OnInit {
   }
 
   register() {
-    this.loading=true;
+    this.loading = true;
     const email = this.registerUser.value.email;
     const password = this.registerUser.value.password;
     const repeatPassword = this.registerUser.value.repeatPassword;
-    console.log("register",email);
-    
+    console.log("register", email);
+
 
     if (password !== repeatPassword) {
       this.toastr.error("passwords do not match!");
@@ -43,17 +43,29 @@ export class SingUpComponent implements OnInit {
     this.afAuth.
       createUserWithEmailAndPassword(email, password).
       then((user) => {
-        this.loading=false;
-        this.toastr.success("user registered successfully")
-        this.router.navigate(['/login']);
-        console.log(user);
+        this.verifyEmail();
       }).
       catch((error) => {
-        this.loading=false;
+        this.loading = false;
         console.log(error);
         this.toastr.error(firebaseError(error.code));
       });
-      this.loading=false;
+    this.loading = false;
+  }
+
+  verifyEmail() {
+    this.afAuth.currentUser.then((user) => {
+      user?.sendEmailVerification()
+        .then((email) => {
+          this.loading = false;
+          this.toastr.info("user registered successfully", 'verify your email')
+          this.router.navigate(['/login']);
+        })
+        .catch((error) => {
+          console.log(error);
+
+        });
+    });
   }
 
   ngOnInit(): void { }
