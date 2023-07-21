@@ -12,6 +12,8 @@ export const firebaseError = (code: string) => {
             return "The credentials is invalid";
         case 'auth/wrong-password':
             return "The credentials is invalid";
+        case 'auth/missing-email':
+            return "Enter your email address"
         default:
             return "error desconocido";
     }

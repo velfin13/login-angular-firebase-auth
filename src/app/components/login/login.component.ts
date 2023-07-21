@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService
   ) {
-    this.loginForm = fb.group({
+    this.loginForm = this.fb.group({
       email: ['', Validators.required, Validators.email],
       password: ['', Validators.required],
     });
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
-    console.log(email);
+    console.log("register",email);
     
     this.afAuth.
     signInWithEmailAndPassword(email, password).

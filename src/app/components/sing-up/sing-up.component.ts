@@ -32,6 +32,8 @@ export class SingUpComponent implements OnInit {
     const email = this.registerUser.value.email;
     const password = this.registerUser.value.password;
     const repeatPassword = this.registerUser.value.repeatPassword;
+    console.log("register",email);
+    
 
     if (password !== repeatPassword) {
       this.toastr.error("passwords do not match!");
@@ -51,7 +53,7 @@ export class SingUpComponent implements OnInit {
         console.log(error);
         this.toastr.error(firebaseError(error.code));
       });
-
+      this.loading=false;
   }
 
   ngOnInit(): void { }
